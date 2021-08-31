@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
-
+  static String routeName = "ProfileScreen";
   @override
   Widget build(BuildContext context) {
     return Scaffold(

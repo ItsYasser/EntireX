@@ -1,13 +1,15 @@
 import 'package:entire/Providers/screens_provider.dart';
-import 'package:entire/control_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'control_screens.dart';
+import 'routes.dart';
+
 void main() {
-  runApp(MyApp());
+  runApp(Main());
 }
 
-class MyApp extends StatelessWidget {
+class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -20,8 +22,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Color(0xfff8f9fa),
         ),
         home: ControlScreens(),
-
-        // HomeScreen(),
+        routes: routes,
       ),
     );
   }

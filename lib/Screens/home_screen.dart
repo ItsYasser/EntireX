@@ -5,6 +5,7 @@ import 'package:entire/Widgets/small_categories.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
+  static String routeName = "HomeScreen";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,7 +79,6 @@ class HomeScreen extends StatelessWidget {
                 height: 15,
               ),
               Container(
-                  width: double.infinity,
                   height: 220,
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: ListView.builder(
