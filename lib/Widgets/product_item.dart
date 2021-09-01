@@ -1,12 +1,11 @@
+import 'package:entire/Models/product.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({
-    Key? key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    var product = Provider.of<Product>(context, listen: false);
     return Container(
       height: 190,
       width: 170,
@@ -23,41 +22,54 @@ class ProductItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 5),
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        width: 1.2, color: Theme.of(context).primaryColor),
-                    borderRadius: BorderRadius.circular(20)),
-                child: Text(
-                  "10% Off",
-                  style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).primaryColor),
-                ),
-              ),
+              product.discount == 0
+                  ? Spacer()
+                  : Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 1, horizontal: 5),
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              width: 1.2,
+                              color: Theme.of(context).primaryColor),
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Text(
+                        "${product.discount}% Off",
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).primaryColor),
+                      ),
+                    ),
               Padding(
                 padding: const EdgeInsets.only(right: 5),
-                child: Icon(
-                  Icons.favorite_border,
-                  size: 20,
-                  color: Theme.of(context).primaryColor,
+                child: Consumer<Product>(
+                  builder: (ctx, product, child) => GestureDetector(
+                    onTap: () {
+                      product.toggleFavorite();
+                    },
+                    child: Icon(
+                      product.isFavorite
+                          ? Icons.favorite
+                          : Icons.favorite_border,
+                      size: 20,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
                 ),
               ),
             ],
           ),
           Expanded(
               child: Container(
+            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
                 image: DecorationImage(
-              fit: BoxFit.fill,
-              image: NetworkImage(
-                  "https://www.kicksologists.com/wp-content/uploads/2010/03/Air-Jordan-10.jpg"),
+              // fit: BoxFit.fill,
+              image: NetworkImage(product.picture),
             )),
           )),
           Text(
-            "Jordan 3 Retros",
+            product.title,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
               fontSize: 16,
@@ -65,7 +77,7 @@ class ProductItem extends StatelessWidget {
             ),
           ),
           Text(
-            "\$234.00",
+            "\$${product.price}",
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ],

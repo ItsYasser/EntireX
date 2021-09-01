@@ -22,7 +22,6 @@ class MyBottomNavBar extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
         child: GNav(
-          curve: Curves.easeInToLinear,
           rippleColor: Theme.of(context).primaryColor,
           hoverColor: Theme.of(context).primaryColor,
           gap: 8,
