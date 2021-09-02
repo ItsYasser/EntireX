@@ -1,15 +1,18 @@
+import 'package:entire/Providers/promos_provider.dart';
+import 'package:entire/Widgets/promo_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class Offers extends StatefulWidget {
+class Promos extends StatefulWidget {
   @override
-  _OffersState createState() => _OffersState();
+  _PromosState createState() => _PromosState();
 }
 
-class _OffersState extends State<Offers> {
-  int offersLength = 3;
+class _PromosState extends State<Promos> {
   int currentPage = 0;
   @override
   Widget build(BuildContext context) {
+    var promos = Provider.of<PromosProvider>(context).promos;
     return SizedBox(
       height: 170,
       child: Column(
@@ -17,8 +20,8 @@ class _OffersState extends State<Offers> {
           Expanded(
             child: PageView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: offersLength,
-              itemBuilder: (ctx, i) => OfferCard(),
+              itemCount: promos.length,
+              itemBuilder: (ctx, i) => PromoCard(promos[i].picture),
               onPageChanged: (index) {
                 setState(() {
                   currentPage = index;
@@ -32,7 +35,7 @@ class _OffersState extends State<Offers> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
-              offersLength,
+              promos.length,
               (index) => buildDot(index: index),
             ),
           ),
@@ -56,27 +59,6 @@ class _OffersState extends State<Offers> {
             ? Border.all(color: Colors.transparent)
             : Border.all(color: Colors.grey),
       ),
-    );
-  }
-}
-
-class OfferCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 150,
-      margin: EdgeInsets.all(3),
-      width: MediaQuery.of(context).size.width - 50,
-      decoration: BoxDecoration(
-          color: Colors.red,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 2,
-              color: (Colors.grey[400])!,
-              spreadRadius: 0.5,
-            ),
-          ]),
     );
   }
 }

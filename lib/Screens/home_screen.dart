@@ -1,5 +1,6 @@
 import 'package:entire/Providers/products_provider.dart';
-import 'package:entire/Widgets/offers_widget.dart';
+import 'package:entire/Providers/promos_provider.dart';
+import 'package:entire/Widgets/promos.dart';
 import 'package:entire/Widgets/product_item.dart';
 import 'package:entire/Widgets/search_widget.dart';
 import 'package:entire/Widgets/small_categories.dart';
@@ -10,8 +11,15 @@ class HomeScreen extends StatelessWidget {
   static String routeName = "HomeScreen";
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => ProductsProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => ProductsProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => PromosProvider(),
+        ),
+      ],
       child: Scaffold(
         body: SingleChildScrollView(
           child: SafeArea(
@@ -22,9 +30,9 @@ class HomeScreen extends StatelessWidget {
               children: [
                 SearchWidget(),
                 SizedBox(
-                  height: 35,
+                  height: 30,
                 ),
-                Offers(),
+                Promos(),
                 SizedBox(
                   height: 35,
                 ),
