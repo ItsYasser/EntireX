@@ -14,10 +14,7 @@ class HomeScreen extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => ProductsProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => PromosProvider(),
+          create: (ctx) => PromosProvider(),
         ),
       ],
       child: Scaffold(

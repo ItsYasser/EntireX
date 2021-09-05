@@ -1,3 +1,4 @@
+import 'package:entire/Screens/product_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:entire/Screens/cart_screen.dart';
 import 'package:entire/Screens/favorites_screen.dart';
@@ -9,4 +10,5 @@ final Map<String, WidgetBuilder> routes = {
   CartScreen.routeName: (ctx) => CartScreen(),
   FavoriteScreen.routeName: (ctx) => FavoriteScreen(),
   ProfileScreen.routeName: (ctx) => ProfileScreen(),
+  ProductDetailsScreen.routeName: (ctx) => ProductDetailsScreen(),
 };
