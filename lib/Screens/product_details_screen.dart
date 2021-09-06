@@ -1,5 +1,6 @@
 import 'package:entire/Models/product.dart';
 import 'package:entire/Providers/products_provider.dart';
+import 'package:entire/Widgets/appbar.dart';
 import 'package:entire/Widgets/bottom_bar.dart';
 import 'package:entire/Widgets/item_colors.dart';
 import 'package:entire/Widgets/item_sizes.dart';
@@ -19,12 +20,7 @@ class ProductDetailsScreen extends StatelessWidget {
     return ChangeNotifierProvider.value(
       value: product,
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text("Product"),
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
+        appBar: myAppBar("Product"),
         bottomNavigationBar: BottomBar(),
         body: SingleChildScrollView(
           child: Padding(

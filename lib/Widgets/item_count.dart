@@ -62,7 +62,7 @@ class CircleButton extends StatelessWidget {
       this.backGroundColor = Colors.black12});
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: fun,
       child: Container(
         padding: EdgeInsets.all(4),

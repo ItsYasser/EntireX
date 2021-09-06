@@ -26,7 +26,7 @@ class Main extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'EntireX',
         theme: ThemeData(
-          primaryColor: Colors.orange,
+          primaryColor: Colors.orange[700],
           scaffoldBackgroundColor: Color(0xfff8f9fa),
         ),
         home: ControlScreens(),
