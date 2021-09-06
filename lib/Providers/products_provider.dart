@@ -9,7 +9,7 @@ class ProductsProvider with ChangeNotifier {
         picture:
             "https://scontent.fqfd1-1.fna.fbcdn.net/v/t1.15752-9/241118460_535542284420048_6311193577647584473_n.png?_nc_cat=101&ccb=1-5&_nc_sid=ae9488&_nc_ohc=67IR9htIr_UAX92twcW&_nc_ht=scontent.fqfd1-1.fna&oh=a751ea64940c26d856b55820e876e9f1&oe=615702B0",
         price: 234.00,
-        isFavorite: true,
+        isFavorite: false,
         discount: 10),
     Product(
         id: DateTime.now().toString(),
@@ -32,7 +32,19 @@ class ProductsProvider with ChangeNotifier {
         price: 39.32)
   ];
   List<Product> get items => [..._items];
+  List<Product> _favItems = [];
+  List<Product> get favItems => [..._favItems];
   Product getProductById(id) {
     return items.firstWhere((element) => element.id == id);
+  }
+
+  void addToFavoriteItems(String prodId) {
+    Product product = getProductById(prodId);
+    if (product.isFavorite) {
+      _favItems.remove(product);
+    } else {
+      _favItems.add(product);
+    }
+    notifyListeners();
   }
 }

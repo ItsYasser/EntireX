@@ -1,4 +1,5 @@
 import 'package:entire/Models/product.dart';
+import 'package:entire/Providers/products_provider.dart';
 import 'package:entire/Widgets/item_count.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -38,6 +39,8 @@ class BottomBar extends StatelessWidget {
               Consumer<Product>(
                 builder: (ctx, product, child) => GestureDetector(
                   onTap: () {
+                    Provider.of<ProductsProvider>(context, listen: false)
+                        .addToFavoriteItems(product.id);
                     product.toggleFavorite();
                   },
                   child: Container(

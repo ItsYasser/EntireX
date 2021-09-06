@@ -1,4 +1,5 @@
 import 'package:entire/Models/product.dart';
+import 'package:entire/Providers/products_provider.dart';
 import 'package:entire/Screens/product_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,6 +8,7 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var product = Provider.of<Product>(context, listen: false);
+
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, ProductDetailsScreen.routeName,
@@ -51,6 +53,8 @@ class ProductItem extends StatelessWidget {
                   child: Consumer<Product>(
                     builder: (ctx, product, child) => GestureDetector(
                       onTap: () {
+                        Provider.of<ProductsProvider>(context, listen: false)
+                            .addToFavoriteItems(product.id);
                         product.toggleFavorite();
                       },
                       child: Icon(
