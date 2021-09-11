@@ -1,5 +1,6 @@
 import 'package:entire/Providers/products_provider.dart';
 import 'package:entire/Providers/promos_provider.dart';
+import 'package:entire/Widgets/custom_text.dart';
 import 'package:entire/Widgets/promos.dart';
 import 'package:entire/Widgets/product_item.dart';
 import 'package:entire/Widgets/search_widget.dart';
@@ -41,13 +42,12 @@ class HomeScreen extends StatelessWidget {
                       "Categories",
                       style: Theme.of(context).textTheme.headline5,
                     ),
-                    Text(
-                      "See All",
-                      style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w500,
-                          decoration: TextDecoration.underline),
-                    )
+                    CustomText(
+                      text: "See All",
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w500,
+                      underline: true,
+                    ),
                   ],
                 ),
                 SizedBox(
@@ -75,13 +75,12 @@ class HomeScreen extends StatelessWidget {
                       "Products",
                       style: Theme.of(context).textTheme.headline5,
                     ),
-                    Text(
-                      "See All",
-                      style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w500,
-                          decoration: TextDecoration.underline),
-                    )
+                    CustomText(
+                      text: "See All",
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w500,
+                      underline: true,
+                    ),
                   ],
                 ),
                 SizedBox(

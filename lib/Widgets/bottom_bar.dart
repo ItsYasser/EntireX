@@ -1,6 +1,7 @@
 import 'package:entire/Models/product.dart';
 import 'package:entire/Providers/cart_provider.dart';
 import 'package:entire/Providers/products_provider.dart';
+import 'package:entire/Widgets/custom_text.dart';
 import 'package:entire/Widgets/item_count.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -31,9 +32,10 @@ class BottomBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ItemCount(counter: _prodQuantity),
-              Text(
-                "Total :\$${product.price}",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              CustomText(
+                text: "Total :\$${product.price}",
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
               ),
             ],
           ),
@@ -78,12 +80,11 @@ class BottomBar extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                     ),
                     alignment: Alignment.center,
-                    child: Text(
-                      "Add to Cart",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18),
+                    child: CustomText(
+                      text: "Add to Cart",
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),

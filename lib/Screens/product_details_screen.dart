@@ -2,6 +2,7 @@ import 'package:entire/Models/product.dart';
 import 'package:entire/Providers/products_provider.dart';
 import 'package:entire/Widgets/appbar.dart';
 import 'package:entire/Widgets/bottom_bar.dart';
+import 'package:entire/Widgets/custom_text.dart';
 import 'package:entire/Widgets/item_colors.dart';
 import 'package:entire/Widgets/item_sizes.dart';
 import 'package:entire/Widgets/product_detailedImage.dart';
@@ -61,10 +62,11 @@ class ProductDetailsScreen extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Text(
-                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised ing ",
-                  style: TextStyle(
-                      color: Colors.grey, fontWeight: FontWeight.w500),
+                CustomText(
+                  text:
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised ing ",
+                  color: Colors.grey,
+                  fontWeight: FontWeight.w500,
                 ),
               ],
             ),

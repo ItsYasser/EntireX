@@ -1,5 +1,6 @@
 import 'package:entire/Providers/cart_provider.dart';
 import 'package:entire/Widgets/circle_button.dart';
+import 'package:entire/Widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -64,13 +65,11 @@ class CartCard extends StatelessWidget {
                               icon: Icons.remove,
                             ),
                           ),
-                          Padding(
+                          CustomText(
+                            text: prodQuantity.toString(),
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
                             padding: const EdgeInsets.symmetric(horizontal: 7),
-                            child: Text(
-                              prodQuantity.toString(),
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16),
-                            ),
                           ),
                           GestureDetector(
                             onTap: () {
@@ -85,12 +84,10 @@ class CartCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Text(
-                        "\$${(price * prodQuantity).toStringAsFixed(2)}",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
+                      CustomText(
+                        text: "\$${(price * prodQuantity).toStringAsFixed(2)}",
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
                     ],
                   ),

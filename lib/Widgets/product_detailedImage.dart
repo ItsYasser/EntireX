@@ -1,3 +1,4 @@
+import 'package:entire/Widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailedImage extends StatelessWidget {
@@ -39,20 +40,20 @@ class ProductDetailedImage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: Text(
-                  title,
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+                child: CustomText(
+                  text: title,
+                  fontSize: 22,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
               SizedBox(
                 width: 15,
               ),
-              Text(
-                "\$$price",
-                style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w700,
-                    color: Theme.of(context).primaryColor),
+              CustomText(
+                text: "\$$price",
+                fontSize: 22,
+                fontWeight: FontWeight.w700,
+                color: Theme.of(context).primaryColor,
               ),
             ],
           )

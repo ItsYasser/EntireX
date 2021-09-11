@@ -1,3 +1,4 @@
+import 'package:entire/Widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class SearchWidget extends StatelessWidget {
@@ -21,7 +22,7 @@ class SearchWidget extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Text("Search here..."),
+                CustomText(text: "Search here..."),
               ],
             ),
           ),

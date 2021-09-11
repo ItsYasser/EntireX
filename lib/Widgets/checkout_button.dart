@@ -1,3 +1,4 @@
+import 'package:entire/Widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class CheckOutButton extends StatelessWidget {
@@ -15,13 +16,11 @@ class CheckOutButton extends StatelessWidget {
       decoration: BoxDecoration(
           color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.circular(10)),
-      child: Text(
-        "Checkout",
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ),
+      child: CustomText(
+        text: "Checkout",
+        fontSize: 18,
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
       ),
     );
   }

@@ -1,7 +1,6 @@
-import 'package:entire/Providers/cart_provider.dart';
 import 'package:entire/Widgets/circle_button.dart';
+import 'package:entire/Widgets/custom_text.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class ItemCount extends StatefulWidget {
   final ValueNotifier<int> counter;
@@ -37,12 +36,11 @@ class _ItemCountState extends State<ItemCount> {
             icon: Icons.remove,
           ),
         ),
-        Padding(
+        CustomText(
+          text: widget.counter.value.toString(),
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
           padding: const EdgeInsets.symmetric(horizontal: 7),
-          child: Text(
-            widget.counter.value.toString(),
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          ),
         ),
         GestureDetector(
           onTap: () {

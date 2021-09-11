@@ -2,6 +2,7 @@ import 'package:entire/Providers/cart_provider.dart';
 import 'package:entire/Widgets/appbar.dart';
 import 'package:entire/Widgets/cart_card.dart';
 import 'package:entire/Widgets/checkout_button.dart';
+import 'package:entire/Widgets/custom_text.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +21,7 @@ class CartScreen extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  height: 500,
+                  height: MediaQuery.of(context).size.height * 0.6,
                   margin: const EdgeInsets.only(bottom: 10),
                   child: ListView.builder(
                       itemCount: cart.itemCount,
@@ -45,17 +46,16 @@ class CartScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "Total",
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600),
+                      CustomText(
+                        text: "Total",
+                        color: Colors.grey,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
                       ),
-                      Text(
-                        "\$ " + cart.totalAmount.toStringAsFixed(2),
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 17),
+                      CustomText(
+                        text: "\$ " + cart.totalAmount.toStringAsFixed(2),
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
                       ),
                       CheckOutButton(),
                     ],

@@ -1,6 +1,7 @@
 import 'package:entire/Models/product.dart';
 import 'package:entire/Providers/products_provider.dart';
 import 'package:entire/Screens/product_details_screen.dart';
+import 'package:entire/Widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -41,12 +42,11 @@ class ProductItem extends StatelessWidget {
                                   width: 1.2,
                                   color: Theme.of(context).primaryColor),
                               borderRadius: BorderRadius.circular(20)),
-                          child: Text(
-                            "${product.discount}% Off",
-                            style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context).primaryColor),
+                          child: CustomText(
+                            text: "${product.discount}% Off",
+                            fontSize: 13,
+                            color: Theme.of(context).primaryColor,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                   Padding(
@@ -86,17 +86,14 @@ class ProductItem extends StatelessWidget {
                   ),
                 ),
               ),
-              Text(
-                product.title,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                ),
+              CustomText(
+                text: product.title,
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
               ),
-              Text(
-                "\$${product.price}",
-                style: TextStyle(fontWeight: FontWeight.bold),
+              CustomText(
+                text: "\$${product.price}",
+                fontWeight: FontWeight.bold,
               ),
             ],
           ),
