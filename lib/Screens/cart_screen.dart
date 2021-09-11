@@ -1,14 +1,17 @@
+import 'package:entire/Providers/cart_provider.dart';
 import 'package:entire/Widgets/appbar.dart';
 import 'package:entire/Widgets/cart_card.dart';
 import 'package:entire/Widgets/checkout_button.dart';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CartScreen extends StatelessWidget {
   static String routeName = "CartScreen";
 
   @override
   Widget build(BuildContext context) {
+    var cart = Provider.of<CartProvider>(context);
     return Scaffold(
       appBar: myAppBar("Cart"),
       body: SingleChildScrollView(
@@ -19,9 +22,18 @@ class CartScreen extends StatelessWidget {
                 Container(
                   height: 500,
                   margin: const EdgeInsets.only(bottom: 10),
-                  // padding: const EdgeInsets.only(bottom: 10),
                   child: ListView.builder(
-                      itemCount: 8, itemBuilder: (ctx, i) => CartCard()),
+                      itemCount: cart.itemCount,
+                      itemBuilder: (ctx, i) {
+                        var oneCart = cart.items.values.toList()[i];
+                        return CartCard(
+                          id: cart.items.keys.toList()[i],
+                          image: oneCart.image,
+                          price: oneCart.price,
+                          title: oneCart.title,
+                          prodQuantity: oneCart.quantity,
+                        );
+                      }),
                 ),
                 const Divider(
                   thickness: 1.5,
@@ -41,11 +53,11 @@ class CartScreen extends StatelessWidget {
                             fontWeight: FontWeight.w600),
                       ),
                       Text(
-                        "\$ 30.15",
+                        "\$ " + cart.totalAmount.toStringAsFixed(2),
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 17),
                       ),
-                      CheckOutButton()
+                      CheckOutButton(),
                     ],
                   ),
                 ),

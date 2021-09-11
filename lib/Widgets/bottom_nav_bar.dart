@@ -37,8 +37,13 @@ class MyBottomNavBar extends StatelessWidget {
               text: 'Home',
             ),
             GButton(
+              // iconColor: Colors.white,
+              // iconActiveColor: Colors.white,
+              onPressed: () {},
+
               icon: Icons.shopping_cart,
               text: 'Cart',
+              // leading: Icon(Icons.shopping_cart, color: Colors.grey),
             ),
             GButton(
               icon: Icons.favorite,

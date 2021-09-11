@@ -1,13 +1,16 @@
 import 'package:entire/Models/product.dart';
+import 'package:entire/Providers/cart_provider.dart';
 import 'package:entire/Providers/products_provider.dart';
 import 'package:entire/Widgets/item_count.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class BottomBar extends StatelessWidget {
+  final ValueNotifier<int> _prodQuantity = ValueNotifier<int>(1);
   @override
   Widget build(BuildContext context) {
     Product product = Provider.of<Product>(context, listen: false);
+    var cart = Provider.of<CartProvider>(context, listen: false);
     return Container(
       height: 120,
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
@@ -27,7 +30,7 @@ class BottomBar extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ItemCount(),
+              ItemCount(counter: _prodQuantity),
               Text(
                 "Total :\$${product.price}",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -60,20 +63,28 @@ class BottomBar extends StatelessWidget {
               ),
               Expanded(
                 flex: 3,
-                child: Container(
-                  height: 50,
-                  margin: const EdgeInsets.only(left: 50),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Add to Cart",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18),
+                child: GestureDetector(
+                  onTap: () {
+                    print(_prodQuantity.value);
+                    cart.addItem(product.id, product.price, product.title,
+                        _prodQuantity.value, product.picture);
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    height: 50,
+                    margin: const EdgeInsets.only(left: 50),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Add to Cart",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18),
+                    ),
                   ),
                 ),
               ),

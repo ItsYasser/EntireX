@@ -1,7 +1,20 @@
-import 'package:entire/Widgets/item_count.dart';
+import 'package:entire/Providers/cart_provider.dart';
+import 'package:entire/Widgets/circle_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CartCard extends StatelessWidget {
+  final String image, title;
+  final double price;
+  final int prodQuantity;
+  final String id;
+  CartCard(
+      {required this.image,
+      required this.title,
+      required this.price,
+      required this.prodQuantity,
+      required this.id});
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -12,23 +25,22 @@ class CartCard extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+            Expanded(
               child: Image(
-                image: NetworkImage(
-                    "https://scontent.fqfd1-2.fna.fbcdn.net/v/t1.15752-9/241165311_836855787195783_961998019330795786_n.png?_nc_cat=107&ccb=1-5&_nc_sid=ae9488&_nc_ohc=jXUyPAd7hnUAX9zvCml&_nc_ht=scontent.fqfd1-2.fna&oh=b58b0ebb7d5771e79909c9e18c4a0247&oe=6153D037"),
+                image: NetworkImage(image),
               ),
             ),
             const SizedBox(
-              width: 10,
+              width: 12,
             ),
             Expanded(
+              flex: 2,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Kllisre ram DDR4",
+                    title,
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   Text(
@@ -41,9 +53,40 @@ class CartCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ItemCount(),
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Provider.of<CartProvider>(context, listen: false)
+                                  .decreaseQuantity(id);
+                            },
+                            child: CircleButton(
+                              icon: Icons.remove,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 7),
+                            child: Text(
+                              prodQuantity.toString(),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Provider.of<CartProvider>(context, listen: false)
+                                  .increaseQuantity(id);
+                            },
+                            child: CircleButton(
+                              icon: Icons.add,
+                              backGroundColor: Theme.of(context).primaryColor,
+                              iconColor: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
                       Text(
-                        "\$39.32",
+                        "\$${(price * prodQuantity).toStringAsFixed(2)}",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,

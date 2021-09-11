@@ -1,26 +1,27 @@
+import 'package:entire/Providers/cart_provider.dart';
+import 'package:entire/Widgets/circle_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ItemCount extends StatefulWidget {
-  const ItemCount({
-    Key? key,
-  }) : super(key: key);
+  final ValueNotifier<int> counter;
+  ItemCount({required this.counter});
 
   @override
   _ItemCountState createState() => _ItemCountState();
 }
 
 class _ItemCountState extends State<ItemCount> {
-  int value = 1;
-  void increase() {
+  void increaseValue() {
     setState(() {
-      value += 1;
+      widget.counter.value += 1;
     });
   }
 
-  void decrease() {
-    if (value == 1) return;
+  void decreaseValue() {
+    if (widget.counter.value == 1) return;
     setState(() {
-      value -= 1;
+      widget.counter.value -= 1;
     });
   }
 
@@ -28,52 +29,32 @@ class _ItemCountState extends State<ItemCount> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CircleButton(
-          icon: Icons.remove,
-          fun: decrease,
+        GestureDetector(
+          onTap: () {
+            decreaseValue();
+          },
+          child: CircleButton(
+            icon: Icons.remove,
+          ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 7),
           child: Text(
-            value.toString(),
+            widget.counter.value.toString(),
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
         ),
-        CircleButton(
-          icon: Icons.add,
-          backGroundColor: Theme.of(context).primaryColor,
-          iconColor: Colors.white,
-          fun: increase,
+        GestureDetector(
+          onTap: () {
+            increaseValue();
+          },
+          child: CircleButton(
+            icon: Icons.add,
+            backGroundColor: Theme.of(context).primaryColor,
+            iconColor: Colors.white,
+          ),
         ),
       ],
-    );
-  }
-}
-
-class CircleButton extends StatelessWidget {
-  final Color iconColor;
-  final IconData icon;
-  final Color backGroundColor;
-  final VoidCallback fun;
-  CircleButton(
-      {required this.icon,
-      required this.fun,
-      this.iconColor = Colors.black,
-      this.backGroundColor = Colors.black12});
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: fun,
-      child: Container(
-        padding: EdgeInsets.all(4),
-        decoration:
-            BoxDecoration(shape: BoxShape.circle, color: backGroundColor),
-        child: Icon(
-          icon,
-          size: 20,
-          color: iconColor,
-        ),
-      ),
     );
   }
 }
